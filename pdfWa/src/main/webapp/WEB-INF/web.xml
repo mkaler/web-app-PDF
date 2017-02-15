@@ -4,24 +4,53 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+ 	<context-param>
+  	<param-name>upload</param-name>
+  	<param-value>uploads/</param-value>
+  </context-param>
+  
+   <context-param>
+  	<param-name>dbOutPath</param-name>
+  	<param-value>output/database/</param-value>
+  </context-param>
+  
+   <context-param>
+  	<param-name>PDFOutDir</param-name>
+  	<param-value>output/pdf/</param-value>
+  </context-param>
+ 
+   <context-param>
+  	<param-name>dbInPath</param-name>
+  	<param-value>input/InfoDipendenti.sqlite</param-value>
+  </context-param>  
+	
   <servlet>
   	<servlet-name>HomeServlet</servlet-name>
   	<display-name>HomeServlet</display-name>
   	<description></description>
   	<servlet-class>code.servlets.HomeServlet</servlet-class>
   </servlet>
+  
   <servlet>
   	<servlet-name>GotPDF</servlet-name>
   	<display-name>GotPDF</display-name>
   	<description></description>
   	<servlet-class>code.servlets.GotPDF</servlet-class>
   </servlet>
-    <servlet>
-  	<servlet-name>ErrorHandler</servlet-name>
-  	<display-name>ErrorHandler</display-name>
+  <servlet>
+  	<servlet-name>SplitPDF</servlet-name>
+  	<display-name>SplitPDF</display-name>
   	<description></description>
-  	<servlet-class>code.servlets.ErrorHandler</servlet-class>
+  	<servlet-class>code.servlets.SplitPDF</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EditDb</servlet-name>
+  	<display-name>EditDb</display-name>
+  	<description></description>
+  	<servlet-class>code.servlets.EditDb</servlet-class>
+  </servlet>
+
   <servlet-mapping>
   	<servlet-name>HomeServlet</servlet-name>
   	<url-pattern>/HomeServlet</url-pattern>
@@ -30,20 +59,18 @@
   	<servlet-name>GotPDF</servlet-name>
   	<url-pattern>/GotPDF</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ErrorHandler</servlet-name>
-  	<url-pattern>/ErrorHandler</url-pattern>
-  </servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>SplitPDF</servlet-name>
+		<url-pattern>/SplitPDF</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditDb</servlet-name>
+		<url-pattern>/EditDb</url-pattern>
+	</servlet-mapping>
+  
+ 
   <welcome-file-list>
         <welcome-file>HomeServlet</welcome-file>
   </welcome-file-list>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/ErrorHandler</location>
-  </error-page>
-  <error-page>
-	    <exception-type>java.lang.Throwable</exception-type >
-	    <location>/ErrorHandler</location>
-  </error-page>
+
 </web-app>

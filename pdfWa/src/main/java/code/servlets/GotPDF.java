@@ -26,27 +26,25 @@ import code.core.ManipulatePDF;
 public class GotPDF extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	   private String filePath = "src/uploaded/";
+	  // private String filePath = "src/uploaded/";
 	   private File file;
-	   private String dbOutPath = "src/output/database/database.sqlite";
-	   private String dbInPath = "src/main/resources/inputFiles/InfoDipendenti.sqlite";
-	   private String PDFOutPath = "src/output/pdf/";
+	  // private String dbOutPath = "src/output/database/database.sqlite";
+	  // private String dbInPath = "src/main/resources/inputFiles/InfoDipendenti.sqlite";
+	  // private String PDFOutPath = "src/output/pdf/";
 
 	   public void init( ){
 	      // Get the file location where it would be stored.
 	      //filePath =  getServletContext().getInitParameter("PDFtpSplit"); 
 	   }
 	    public GotPDF() {
-	        super();
-	        // TODO Auto-generated constructor stub
+	       
 	    }
 	
-		/**
-		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-		 */
+		
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			try
 			{
+				
 				uploadPDF(request, response);
 				
 				splitPDF(file);
@@ -81,7 +79,13 @@ public class GotPDF extends HttpServlet {
 		
 		private void uploadPDF(HttpServletRequest request, HttpServletResponse response) throws Exception{
 			
-			String message = "The file has been uploaded";
+			
+			
+			// creates the directory if it does not exist
+			File uploadDir = new File(getServletContext().getInitParameter("upload"));
+			if (!uploadDir.exists()) {
+			    uploadDir.mkdir();
+			}
 			
 		      DiskFileItemFactory factory = new DiskFileItemFactory();
 		   
@@ -108,15 +112,17 @@ public class GotPDF extends HttpServlet {
 		            // Write the file
 		            if( fileName.lastIndexOf("\\") >= 0 )
 		            {
-		               file = new File( filePath + 
+		               file = new File( getServletContext().getInitParameter("upload") + 
 		               fileName.substring( fileName.lastIndexOf("\\"))) ;
 		            }
 		            else
 		            {
-		               file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
+		               file = new File( getServletContext().getInitParameter("upload") + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
 		            }
 		            
 		            fi.write( file );
+		            System.out.println(file.getAbsolutePath());
+		            System.out.println(file.getCanonicalPath());
 		            
 		         }
 		      }
@@ -125,7 +131,8 @@ public class GotPDF extends HttpServlet {
 		private void splitPDF(File file) throws Exception{
 			
 			ManipulatePDF p = new ManipulatePDF();
-			p.init(file, PDFOutPath, dbInPath, dbOutPath);
+			p.init(file, getServletContext().getInitParameter("PDFOutDir"),getServletContext().getInitParameter("dbInPath"),
+					getServletContext().getInitParameter("dbOutPath") );
 			System.out.println("Done");
 			
 		}
@@ -179,7 +186,7 @@ public class GotPDF extends HttpServlet {
 		        ZipOutputStream zos = new 
 		               ZipOutputStream(response.getOutputStream()); 
 
-		        zipDir(PDFOutPath, zos); 
+		        zipDir(getServletContext().getInitParameter("PDFOutDir"), zos); 
 
 		        zos.close();
 		        //request.getRequestDispatcher("/WEB-INF/jsps/acceptFile.jsp").forward(request, response);
