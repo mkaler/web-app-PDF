@@ -169,7 +169,7 @@ public final class ManipulatePDF  {
 	 * @return List of employees with data imported from the given .sqlite file
 	 * @throws Exception
 	 */
-	private List<Employee> DBToList(String inputPathDB) throws Exception{
+	public static List<Employee> DBToList(String inputPathDB) throws Exception{
 		Connection con = null;
 		Statement stmt = null;
 		List<Employee> emps = new LinkedList<Employee>();

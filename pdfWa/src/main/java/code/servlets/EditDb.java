@@ -38,12 +38,11 @@ public class EditDb extends HttpServlet {
 	{
 		try {
 			
-			//List<Employee> emps = ManipulatePDF.DBToList(getServletContext().getInitParameter("dbInPath"));
+			List<Employee> emps = ManipulatePDF.DBToList(getServletContext().getInitParameter("dbInPath"));
 			
-			//request.setAttribute("users", emps);
+			request.setAttribute("users", emps);
 		
 			request.getRequestDispatcher("/WEB-INF/jsps/users.jsp").forward(request, response);
-			
 			
 			
 		} catch (Exception e) {

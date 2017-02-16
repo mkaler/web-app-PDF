@@ -17,11 +17,11 @@ public class Employee {
 	private Integer anno = null;
 	private Float cifra	= null;
 	
-	protected Employee(){
+	public Employee(){
 		
 	}
 	
-	protected Employee(String name, String lastName, String cf) {
+	public Employee(String name, String lastName, String cf) {
 		this.name = name;
 		this.lastName = lastName;
 		this.cf = cf;
@@ -29,7 +29,7 @@ public class Employee {
 	
 	
 	
-	protected Employee(String name, String lastName, String cf, String mese, Integer anno, Float cifra) {
+	public Employee(String name, String lastName, String cf, String mese, Integer anno, Float cifra) {
 		this.name = name;
 		this.lastName = lastName;
 		this.cf = cf;
@@ -38,57 +38,63 @@ public class Employee {
 		this.cifra = cifra;
 	}
 
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 
-	protected void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	
 
-	protected String getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	protected void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	protected String getCf() {
+	public String getCf() {
 		return cf;
 	}
 
-	protected void setCf(String cf) {
+	public void setCf(String cf) {
 		this.cf = cf;
 	}
 
-	protected String getMese() {
+	public String getMese() {
 			return mese;
 	}
 
-	protected void setMese(String mese) {
+	public void setMese(String mese) {
 		this.mese = mese;
 	}
 
-	protected Integer getAnno() {
+	public Integer getAnno() {
 		return anno;
 	}
 
-	protected void setAnno(Integer anno) {
+	public void setAnno(Integer anno) {
 		this.anno = anno;
 	}
 
-	protected Float getCifra() {
+	public Float getCifra() {
 		return cifra;
 	}
 
-	protected void setCifra(Float cifra) {
+	public void setCifra(Float cifra) {
 		this.cifra = cifra;
 	}
 	
-	protected String toStringDB(){
+	public String toStringDB(){
 		return "'"+name+"',"+"'"+lastName+"',"+"'"+cf+"','"+mese+"',"+anno+","+cifra;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", lastName=" + lastName + ", cf=" + cf + ", mese=" + mese + ", anno=" + anno
+				+ ", cifra=" + cifra + "]";
 	}
 	
 	
