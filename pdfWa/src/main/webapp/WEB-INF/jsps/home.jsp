@@ -8,16 +8,17 @@
 	</head>
 	<body>
 	
-		<form action = "SplitPDF" >
-			<input type="submit" value="gestine utenti">
-		</form>
+	
+	 <form action = "SplitPDF" >
+			<input type="submit" value="gestine libro unico">
+	 </form>
 		
 		<br>
 		<br>
 		
 		<form action = "EditDb" >
-			<input type="submit" value="gestione libro unico">
-		</form>
+			<input type="submit" value="gestione utenti">
+	</form> 
 		   
 	</body>
 </html>
